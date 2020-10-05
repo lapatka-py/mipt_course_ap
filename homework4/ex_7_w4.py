@@ -23,7 +23,7 @@ def PATH(arg: str):
             print(*data)
             with open(arg, 'w') as file:
                 for elem in data:
-                    file.write(elem)
+                    file.write(str(elem))
             return value
         return wrapper
     return decorator
