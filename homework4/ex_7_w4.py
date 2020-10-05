@@ -5,16 +5,15 @@ def PATH(arg: str):
         def wrapper(*args, **kwargs):
             data = []                       # сбор данных
             t.localtime()
-            time_start = t.ctime(t.time())
-            t.clock()
+            time_start = t.time()
             value = func(*args, **kwargs)
-            time = t.clock()
-            time_end = t.ctime(t.time())
+            time_end = t.time()
+            time = time_start - time_end
             arguments = [*args]
             named_arguments = {**kwargs}
             data.append(time)
-            data.append(time_start)
-            data.append(time_end)
+            data.append(t.ctime(time_start))
+            data.append(t.ctime(time_end))
             data.append(arguments)
             data.append(named_arguments)
             if value is None:
@@ -22,12 +21,11 @@ def PATH(arg: str):
             else:
                 data.append(value)
             print(*data)
-            return data
+            with open(arg, 'w') as file:
+                for elem in data:
+                    file.write(elem)
+            return value
         return wrapper
-    data = decorator
-    with open(arg, 'w') as file:
-        for elem in data:
-            file.write(elem)
     return decorator
 
 path = str(input())
@@ -36,7 +34,7 @@ path = str(input())
 @PATH(path)
 def random_function(*args, **kwargs):
     print('Мои аргументы', *args)
-    print("Мои именованные аргументы", **kwargs)
+    print('Мои ключи именованных аргументы', *kwargs.keys())
     return
 
-random_function(1, 1, 4, 5, sliv=True, doka2='kill mind of little pupil')
+random_function(1, 1, 4, 5, arg=True, doka2= 'kill mind of little schoolars')
