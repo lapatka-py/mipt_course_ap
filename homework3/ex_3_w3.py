@@ -6,6 +6,7 @@ main_zip.extractall('C:\\cygwin64\\home\\Данила\\mipt_course_ap\\homework3
 
 with open('C:\\cygwin64\\home\\Данила\\mipt_course_ap\\homework3\\python_dirs.txt') as pd:
     list_of_dirs = []
+
     for cur_dir, dirs, files in os.walk('C:\\cygwin64\\home\\Данила\\mipt_course_ap\\homework3\\main'):
         for file in files:
             if file.endswith('.py') and cur_dir not in list_of_dirs:

@@ -4,6 +4,8 @@ with open('1.json', 'r+') as file:
     A = file.read()
     print(A)
     B = json.loads(A)
-    print(B)
     B['glossary']['GlossDiv']['GlossList']['GlossEntry']['week'] = '3'
-    file.
+    print(B)
+    #json.dump(B, file)
+    C = json.dumps(B)
+    file.writelines(C)
