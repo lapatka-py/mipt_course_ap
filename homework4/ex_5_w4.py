@@ -14,6 +14,7 @@ def decor(func):
             print('Очень много')
     return wrapper
 
+
 @decor
 def even_finder(list_of_numbers):
     count = 0
@@ -21,6 +22,7 @@ def even_finder(list_of_numbers):
         if x % 2 == 0:
             count += 1
     return count
+
 
 try:
     numbers = list(map(int, input().split()))

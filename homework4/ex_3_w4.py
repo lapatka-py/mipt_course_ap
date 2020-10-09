@@ -12,6 +12,7 @@ def fib(n):
     except ValueError:
         print('Введите натуральное число')
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-n', action='store', default=None, help='Введите натуральное число')
 parser.add_argument('number', action='store', nargs="?", help='Введите натуральное число')

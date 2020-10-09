@@ -1,6 +1,7 @@
 import argparse
 
 primes = [None, 1, 2]
+
 def prime_gen(n, primes):
     if len(primes) - 1 < n:
         a = 2
@@ -14,6 +15,7 @@ def prime_gen(n, primes):
     else:
         return primes
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--show-all', '-a', action='store_true', default=False, help='Если хотите все простые числа до n-го')
 parser.add_argument('--file', '-f', action='store', default=None, help='Если хотите записать числа в файл')
@@ -21,19 +23,15 @@ parser.add_argument('number', action='store', nargs="?", help='Номер про
 namespace = parser.parse_args()
 
 N = namespace.number
-flag = namespace.show_all
-
 primes = prime_gen(N, primes)
 
-if flag:
-    print(*primes[1::])
-else:
-    print(primes[N])
-
-if not namespace.file is None:
+if namespace.file is not None:
     with open(namespace.file, 'w') as file:
+        flag = namespace.show_all
         if flag:
+            print(*primes[1::])
             for i in range(len(primes) - 1):
                 file.write(str(primes[i + 1]) + ' ')
         else:
+            print(primes[N])
             file.write(str(primes[N]) + ' ')
